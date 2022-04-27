@@ -1,5 +1,5 @@
 class Person
-  def initialize(use_or_id, age, name = 'unknown', parent_permission: true)
+  def initialize(_id, age, name = 'unknown', parent_permission: true)
     @id = Random.rand(1..1000)
     @name = age
     @age = name
