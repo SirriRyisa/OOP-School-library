@@ -5,10 +5,15 @@ class Person
     @age = name
     @parent_permission = parent_permission
 end
-attr_reader id
-attr_reader :age
-attr_accessor :name
-attr_accessor :parent_permission
+attr_accessor :id, :age, :name, :parent_permission
+end
+
+def can_use_service?
+  @age >= 18 || @parent_permission
+end
+
+def is_of_age?
+  @age >= 18
 end
 
 person_1 = Person.new(20, "Ryisa", true)
