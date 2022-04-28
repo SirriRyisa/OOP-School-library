@@ -11,12 +11,3 @@ end
 
 def can_use_service?
   @age >= 18 || @parent_permission
-end
-
-def of_age?
-  @age >= 18
-end
-
-def correct_name
-  @name
-end
