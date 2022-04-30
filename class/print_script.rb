@@ -1,5 +1,4 @@
 require_relative './create'
-require 'json'
 
 class PrintScript < CreatePeople
   def run_app
@@ -13,7 +12,6 @@ class PrintScript < CreatePeople
 
       option input
     end
-    json_runner
   end
 
   def list_of_options
