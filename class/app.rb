@@ -1,11 +1,11 @@
 require 'json'
-require './person'
-require './student'
-require './teacher'
-require './book'
-require './classroom'
-require './rental'
-require './print_script'
+require 'person'
+require 'student'
+require 'teacher'
+require 'book'
+require 'classroom'
+require 'rental'
+require 'print_script'
 
 class App < PrintScript
   def initialize

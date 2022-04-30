@@ -1,5 +1,5 @@
 require 'json'
-require './savedata'
+require 'savedata'
 
 class CreatePeople
   def initialize

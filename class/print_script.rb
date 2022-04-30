@@ -1,4 +1,4 @@
-require './create'
+require 'create'
 require 'json'
 
 class PrintScript < CreatePeople
