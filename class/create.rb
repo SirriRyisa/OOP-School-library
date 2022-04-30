@@ -1,6 +1,3 @@
-require 'json'
-require 'savedata'
-
 class CreatePeople
   def initialize
     @books = []
@@ -27,15 +24,17 @@ class CreatePeople
     age = gets.chomp.to_i
     print 'Enter name: '
     name = gets.chomp
+    print 'Enter classroom: '
+    classroom = gets.chomp
     print 'Has parent permission? [Y/N]: '
     parent_permission = gets.chomp.downcase
     case parent_permission
     when 'n'
-      Student.new(age, 'classroom', name, false)
+      Student.new(age, classroom, name, false)
       @persons << student
       puts 'No parents permission, cant rent books'
     when 'y'
-      student = Student.new(age, 'classroom', name, true)
+      student = Student.new(age, classroom, name, true)
       @persons << student
       puts 'Student created successfully'
     end

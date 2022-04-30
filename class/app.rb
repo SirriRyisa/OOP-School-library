@@ -1,19 +1,18 @@
+require_relative './teacher'
+require_relative './book'
+require_relative './classroom'
+require_relative './rental'
+require_relative './print_script'
+require_relative './person'
+require_relative './student'
 require 'json'
-require 'person'
-require 'student'
-require 'teacher'
-require 'book'
-require 'classroom'
-require 'rental'
-require 'print_script'
 
 class App < PrintScript
   def initialize
     super
-    @iomanager = IOmanager.new
-    @books = @iomanager.fetch_book_data
-    @persons = @iomanager.fetch_person_data
-    @rentals = @iomanager.fetch_rental_data
+    @books = []
+    @persons = []
+    @rentals = []
   end
 
   def list_all_books
@@ -41,11 +40,5 @@ class App < PrintScript
         puts '...'
       end
     end
-  end
-
-  def json_runner
-    @iomanager.save_book(@books)
-    @iomanager.save_people(@persons)
-    @iomanager.save_rental(@rentals)
   end
 end

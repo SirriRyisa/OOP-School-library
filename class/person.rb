@@ -1,5 +1,5 @@
-require './decorator'
-require './rental'
+require_relative './decorator'
+require_relative './rental'
 
 class Person < Nameable
   attr_reader :id
@@ -36,7 +36,7 @@ class Person < Nameable
 end
 person = Person.new(22, 'maximilianus')
 person.correct_name
-capitalized_person = CapitalizeDecore.new(person)
+capitalized_person = CapitalizeDecorator.new(person)
 capitalized_person.correct_name
-capitalized_trimmed_person = TrimmerDecore.new(capitalized_person)
+capitalized_trimmed_person = TrimmerDecorator.new(capitalized_person)
 capitalized_trimmed_person.correct_name
