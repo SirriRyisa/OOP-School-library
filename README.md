@@ -6,7 +6,7 @@ An imaginary library that helps store books, and give access to a particuar age 
 
 - ruby install
 - clone repo from [@githubhandle](https://github.com/SirriRyisa)
-- run on your local machine
+- run on your local machine: git clone and the paste the link url
 
 # Build with 
  - Ruby
