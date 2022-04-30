@@ -1,6 +1,6 @@
 # OOP-School-
 
-An imaginary library that helps store books, and give access to a particuar age group and seek permission for student below a particular age.
+ An imaginary library that helps store books, and give access to a particuar age group and seek permission for student below a particular age. This school library app has features to add new students, teachers, new books, save records of who borrowed a book and when the book was borrowed.
 
 # Getting started
 
