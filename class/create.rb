@@ -17,7 +17,7 @@ class CreatePeople
     when '2'
       create_teacher
     else
-      puts 'Invalid input. Try again'
+      puts 'Invalid input. Please try again'
     end
   end
 
@@ -33,7 +33,7 @@ class CreatePeople
     when 'n'
       Student.new(age, 'classroom', name, false)
       @persons << student
-      puts 'Student doesnt have parent permission, cant rent books'
+      puts 'No parents permission, cant rent books'
     when 'y'
       student = Student.new(age, 'classroom', name, true)
       @persons << student
