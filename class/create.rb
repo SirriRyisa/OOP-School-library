@@ -1,5 +1,8 @@
-class CreatePeople
+require_relative './storage'
+
+class CreatePeople < IOmanager
   def initialize
+    super
     @books = []
     @persons = []
     @rentals = []
@@ -18,6 +21,8 @@ class CreatePeople
     end
   end
 
+  # rubocop:disable Metrics/MethodLength
+
   def create_student
     puts 'Create a new student'
     print 'Enter student age: '
@@ -32,13 +37,19 @@ class CreatePeople
     when 'n'
       Student.new(age, classroom, name, false)
       @persons << student
+
+      save_people(@persons)
       puts 'No parents permission, cant rent books'
     when 'y'
       student = Student.new(age, classroom, name, true)
       @persons << student
+
+      save_people(@persons)
       puts 'Student created successfully'
     end
   end
+
+  # rubocop:enable Metrics/MethodLength
 
   def create_teacher
     puts 'Create a new teacher'
@@ -50,6 +61,8 @@ class CreatePeople
     specialization = gets.chomp
     teacher = Teacher.new(age, specialization, name)
     @persons << teacher
+
+    save_people(@persons)
     puts 'Teacher created successfully'
   end
 
@@ -61,6 +74,8 @@ class CreatePeople
     author = gets
     book = Book.new(title, author)
     @books.push(book)
+
+    save_book(@books)
     puts "Book #{title} created successfully."
   end
 
@@ -83,6 +98,7 @@ class CreatePeople
     rental = Rental.new(date, @persons[person_id], @books[book_id])
     @rentals << rental
 
+    save_rental(@rentals)
     puts 'Rental created successfully'
   end
 end

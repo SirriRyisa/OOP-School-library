@@ -2,11 +2,13 @@ require 'json'
 
 class IOmanager
   def save_book(books)
-    file = File.open('./book.json', 'w')
+    # file = File.open('./book.json', 'w')
+    # book_data = []
     book_data = books.map do |data|
       { title: data.title, author: data.author }
     end
-    file.puts(JSON.generate(book_data))
+    book = JSON.generate(book_data)
+    File.write('./class/book.json', book)
   end
 
   def fetch_book_data
@@ -25,18 +27,20 @@ class IOmanager
     array
   end
 
-  def save_people(person)
-    file = File.open('./people.json', 'w')
-    person_data = person.map do |persons|
+  def save_people(persons)
+    # file = File.open('./people.json', 'w')
+    # person_data = []
+    person_data = persons.map do |person|
       if person.instance_of?(Teacher)
-        { occupation: 'Teacher', name: persons.name, age: persons.age, specialiazation: persons.specialization,
-          id: persons.id }
+        { occupation: 'Teacher', name: person.name, age: person.age, specialiazation: person.specialization,
+          id: person.id }
       else
-        { occupation: 'Student', name: persons.name, age: persons.age, parent_permission: persons.parent_permission,
-          id: persons.id }
+        { occupation: 'Student', name: person.name, age: person.age, parent_permission: person.parent_permission,
+          id: person.id }
       end
     end
-    file.puts(JSON.generate(person_data))
+    data = JSON.generate(person_data)
+    File.write('./class/people.json', data)
   end
 
   def fetch_person_data
@@ -46,15 +50,15 @@ class IOmanager
       array
     else
       parsed_data = JSON.parse(file)
-      parsed_data.map do |persons|
+      parsed_data.map do |person|
         case person['occupation']
         when 'Teacher'
-          teacher = Teacher.new(persons['age'], persons['name'], persons['specialiazation'], persons['id'].to_i)
+          teacher = Teacher.new(person['age'], person['name'], person['specialization'], person['id'].to_i)
           array.push(teacher)
 
         when 'Student'
-          student = Student.new(persons['age'], 'classroom', persons['name'], persons['parent_permission'],
-                                persons['id'].to_i)
+          student = Student.new(person['age'], 'classroom', person['name'], person['parent_permission'],
+                                person['id'].to_i)
           array.push(student)
         end
       end
@@ -63,27 +67,22 @@ class IOmanager
   end
 
   def save_rental(rentals)
-    file = File.open('./rentals.json', 'w')
+    # file = File.open('./rentals.json', 'w')
+    # rentals_data = []
     rentals_data = rentals.map do |rental|
-      obj = { date: rentals.date, book: { Title: rental.book.title, Author: rental.book.author } }
-      begin
-        if rental.persons.specialiazation
-          obj.store('person',
-                    { id: rental.persons.id, age: rental.persons.age, name: rental.persons.name,
-                      parent_permission: rental.persons.parent_permission })
-        end
-      rescue standardError
-        obj.store('person',
-                  { id: rental.person.id, age: rental.persons.age, name: rental.persons.name,
-                    parent_permission: rental.persons.parent_permission })
-      end
+      obj = { date: rental.date, book: { Title: rental.book.title, Author: rental.book.author } }
+      # if rental.person.specialization
+      obj.store('person',
+                { id: rental.person.id, age: rental.person.age, name: rental.person.name,
+                  parent_permission: rental.person.parent_permission })
       obj
     end
-    file.puts(JSON.generate(rentals_data))
+    data = JSON.generate(rentals_data)
+    File.write('./class/rentals.json', data)
   end
 
   def fetch_rental_data
-    file = File.read('./rentals.json')
+    file = File.write('./rentals.json')
     array = []
 
     if file.empty?

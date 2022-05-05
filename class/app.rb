@@ -1,3 +1,4 @@
+require 'json'
 require_relative './teacher'
 require_relative './book'
 require_relative './classroom'
@@ -5,7 +6,7 @@ require_relative './rental'
 require_relative './print_script'
 require_relative './person'
 require_relative './student'
-require 'json'
+require_relative './storage'
 
 class App < PrintScript
   def initialize
@@ -34,7 +35,8 @@ class App < PrintScript
     puts 'Rented Books:'
     @rentals.each do |rental|
       if rental.person.id == id
-        puts "Peson: #{rental.person.name}  Date: #{rental.date}, Book: '#{rental.book.title}' by #{rental.book.author}"
+        puts "Person: #{rental.person.name}  Date: #{rental.date}, Book: '#{rental.book.title}'
+        by #{rental.book.author}"
       else
         puts
         puts '...'
