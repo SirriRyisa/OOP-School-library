@@ -9,7 +9,7 @@ describe Person do
 
   it 'Check if person attribute match' do
     person = Person.new(0, 'Sirri', true)
-    expect(person).to have_attribute(name: 'Sirri', )
+    expect(person).to have_attribute(name: 'Sirri')
   end
 
   it 'Check if correct name methos is correct' do
