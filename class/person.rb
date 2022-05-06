@@ -1,18 +1,42 @@
-class Person
-  def initialize(_id, age, name = 'unknown', parent_permission: true)
-    @id = Random.rand(1..1000)
-    @name = age
-    @age = name
+require_relative './decorator'
+require_relative './rental'
+
+class Person < Nameable
+  attr_reader :id
+  attr_accessor :name, :age, :rentals, :parent_permission
+
+  # rubocop:disable Style/OptionalBooleanParameter
+  def initialize(age, name = 'unkown', parent_permission = true, id = nil)
+    @id = id || Random.rand(1..50)
+    @name = name
+    @age = age
+    @rentals = []
     @parent_permission = parent_permission
+    super()
   end
-  attr_accessor :id, :age, :name, :parent_permission
-end
+  # rubocop:enable Style/OptionalBooleanParameter
 
-def can_use_service?
-  @age >= 18 || @parent_permission
-end
+  def add_rental(date, book)
+    Rental.new(date, self, book)
+  end
 
-def of_age?
-  @age >= 18
+  def can_use_services?
+    return true if _of_age? || parent_permission
+  end
+
+  def correct_name
+    @name
+  end
+
+  private # check if this is private
+
+  def _of_age?
+    @gae >= 18
+  end
 end
-  
+person = Person.new(22, 'maximilianus')
+person.correct_name
+capitalized_person = CapitalizeDecorator.new(person)
+capitalized_person.correct_name
+capitalized_trimmed_person = TrimmerDecorator.new(capitalized_person)
+capitalized_trimmed_person.correct_name
